@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DateParser.Interface;
+using DateParser.Services;
+using System;
 
 namespace DateParser
 {
@@ -6,7 +8,10 @@ namespace DateParser
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IDateParserService dateParserService = new DateParserService();
+            if (dateParserService.CheckCountOfArguments(args.Length, out string result))
+                result = dateParserService.GetDateRange(args[0], args[1]);
+            Console.WriteLine(result);
         }
     }
 }
