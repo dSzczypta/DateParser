@@ -50,7 +50,7 @@ namespace Tests
         public void GetRangeEndDateLessThanStartDate()
         {
             var result = dateParserService.GetDateRange("12.02.2015", "12.02.2014");
-            Assert.AreEqual(result, "End Date cannot be less than Start Date");
+            Assert.AreEqual(result, "End date cannot be less than start date");
         }
 
         [Test]

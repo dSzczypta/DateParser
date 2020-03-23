@@ -1,7 +1,5 @@
 ﻿using DateParser.Interface;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DateParser.Services
 {
@@ -30,12 +28,20 @@ namespace DateParser.Services
             else if (parsedEndDate < parsedStartDate)
                 return "End date cannot be less than start date";
 
-            return CalculateDate(parsedStartDate, parsedEndDate);
+            return CalculateDateRange(parsedStartDate, parsedEndDate);
         }
 
-        private string CalculateDate(DateTime parsedStartDate, DateTime parsedEndDate)
+        private string CalculateDateRange(DateTime parsedStartDate, DateTime parsedEndDate)
         {
-            throw new NotImplementedException();
+            if(parsedStartDate.Year != parsedEndDate.Year)
+                return GenerateString(parsedStartDate.ToShortDateString(), parsedEndDate.ToShortDateString());
+            else if(parsedStartDate.Month != parsedEndDate.Month)
+                return GenerateString(parsedStartDate.ToString("dd.MM"), parsedEndDate.ToShortDateString());
+
+            return GenerateString(parsedStartDate.ToString("dd"), parsedEndDate.ToShortDateString());
         }
+
+        private string GenerateString(string startDate, string endDate) =>
+            $"{startDate} - {endDate}";
     }
 }
